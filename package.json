@@ -2,12 +2,19 @@
   "name": "react-training",
   "version": "1.0.0",
   "description": "This is my project.",
+  "engines": {
+    "node": "10.15.2"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "build": "echo \"BUILD OK\" && exit 0",
-    "prebuild": "npm run test"
+    "prebuild": "npm run test",
+    "version": "node version-check.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "semver": "^6.0.0"
+  }
 }
