@@ -9,3 +9,6 @@ node_modules
 
 # webpack
 dist
+
+# debug
+debug.log

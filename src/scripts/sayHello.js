@@ -12,7 +12,7 @@ const timeOfDayGreetingMap = {
 
 let calls = 0;
 
-exports.greet = (name, lang='EN') => {
+export const greet = (name, lang='EN') => {
     calls += 1;
 
     if (calls >= 4) return 'Stop it';
@@ -31,7 +31,7 @@ exports.greet = (name, lang='EN') => {
 // };
 
 
-exports.greetTime =(name, time) => {
+export function greetTime(name, time) {
     if (time) {
         const hour = parseInt(time.split(':')[0]);
         let greeting = 'Hey';
@@ -45,6 +45,8 @@ exports.greetTime =(name, time) => {
         }
         return `${greeting}, ${name}`;
     }
-};
+}
 
-exports.resetCount = () => calls = 0;
+export function resetCount() {
+    calls = 0;
+}
