@@ -1,8 +1,9 @@
 import React from 'react';
 import PollHeader from '../components/PollHeader.js';
 import PollQuestion from '../components/PollQuestion.js';
-import PollAnswer from '../components/PollAnswer.js';
 import PollSubmitButton from '../components/PollSubmitButton.js';
+import RadioButtonGroup from '../components/RadioButtonGroup.js';
+import CurrentChoice from '../components/CurrentChoice.js';
 
 const rowStyle ={
     backgroundColor: '#dadada',
@@ -17,13 +18,29 @@ class PollContainer extends React.Component {
         this.state = {
             header: 'Conan!',
             question: 'What is best in life?',
-            answer1: 'Pizza',
-            answer2: 'Tacos',
-            answer3: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women',
+            checkedValue: '',
             correctAnswer: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women'
         };
+        this.setCheckedValue = this.setCheckedValue.bind(this);
     }
+
+    setCheckedValue(value){
+        this.setState({
+            checkedValue: value
+        });
+        console.log(`current choice: ${value}`);
+    }
+
     render() {
+        const choices = [
+            {value: 'Tacos', label: 'Tacos'},
+            {value: 'Pizza', label: 'Pizza'},
+            {
+                value: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women',
+                label: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women'
+            }
+        ];
+
         return (
             <div className="container">
                 <div className="jumbotron">
@@ -33,9 +50,13 @@ class PollContainer extends React.Component {
                     <div className="col-sm-8 col-sm-offset-2">
                         <form>
                             <PollQuestion text={this.state.question} />
-                            <PollAnswer text={this.state.answer1} />
-                            <PollAnswer text={this.state.answer2} />
-                            <PollAnswer text={this.state.answer3} />
+                            <RadioButtonGroup
+                                name='answer'
+                                checkedValue={this.state.checkedValue}
+                                choices={choices}
+                                onChange={this.setCheckedValue}
+                            />
+                            <CurrentChoice choice={this.state.checkedValue}/>
                             <PollSubmitButton />
                         </form>
                     </div>

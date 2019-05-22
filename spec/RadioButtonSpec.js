@@ -1,11 +1,11 @@
-import PollAnswer from '../src/components/PollAnswer.js';
+import RadioButton from '../src/components/RadioButton.js';
 import React from 'react';
 import TestUtils from 'react-dom/test-utils';
 
-describe('PollAnswer', function() {
+describe('RadioButton', function() {
     let component;
     beforeEach(() => {
-        component = TestUtils.renderIntoDocument(<PollAnswer text='answer' />);
+        component = TestUtils.renderIntoDocument(<RadioButton label='answer' />);
     });
 
     it ('renders without problems', function(){
