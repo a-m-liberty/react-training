@@ -1,11 +1,10 @@
 import React from 'react';
 
 
-class CurrentChoice extends React.Component {
-    render() {
-        const currentChoice = `Current Choice: ${this.props.choice}`;
-        return <div>{this.props.choice? currentChoice : '' }</div>;
-    }
-}
+const CurrentChoice = (props) => {
+    const currentChoice = `Current Choice: ${props.choice}`;
+    return <div>{props.choice? currentChoice : '' }</div>;
+};
+
 
 export default CurrentChoice;

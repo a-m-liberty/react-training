@@ -1,11 +1,12 @@
 import PollHeader from '../src/components/PollHeader.js';
+import TestWrapper from '../src/components/TestWrapper.js';
 import React from 'react';
 import TestUtils from 'react-dom/test-utils';
 
 describe('Poll Header', function() {
     let component;
     beforeEach(() => {
-        component = TestUtils.renderIntoDocument(<PollHeader text="Conan!" />);
+        component = TestUtils.renderIntoDocument(<TestWrapper><PollHeader text="Conan!" /></TestWrapper>);
     });
 
     it('renders without problems', function(){

@@ -4,6 +4,7 @@ import PollQuestion from '../components/PollQuestion.js';
 import PollSubmitButton from '../components/PollSubmitButton.js';
 import RadioButtonGroup from '../components/RadioButtonGroup.js';
 import CurrentChoice from '../components/CurrentChoice.js';
+import * as data from '../data/data.json';
 
 const rowStyle ={
     backgroundColor: '#dadada',
@@ -16,12 +17,40 @@ class PollContainer extends React.Component {
     constructor() {
         super();
         this.state = {
-            header: 'Conan!',
-            question: 'What is best in life?',
+            header: data.poll.header,
+            question: data.poll.questions[0].question,
             checkedValue: '',
             correctAnswer: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women'
         };
         this.setCheckedValue = this.setCheckedValue.bind(this);
+    }
+
+    UNSAFE_componentWillMount(){
+        console.log('componentWillMount()');
+    }
+
+    componentDidMount(){
+        console.log('componentDidMount()');
+    }
+
+    UNSAFE_componentWillReceiveProps() {
+        console.log('componentWillReceiveProps()');
+    }
+
+    shouldComponentUpdate() {
+        console.log('shouldcomponentUpdate()');
+    }
+
+    UNSAFE_componentWillUpdate() {
+        console.log('componentWillUpdate()');
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate()');
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount()');
     }
 
     setCheckedValue(value){
@@ -32,14 +61,7 @@ class PollContainer extends React.Component {
     }
 
     render() {
-        const choices = [
-            {value: 'Tacos', label: 'Tacos'},
-            {value: 'Pizza', label: 'Pizza'},
-            {
-                value: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women',
-                label: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women'
-            }
-        ];
+        const choices = data.poll.questions[0].choices;
 
         return (
             <div className="container">

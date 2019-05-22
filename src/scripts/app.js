@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PollContainer from '../containers/PollContainer.js';
 
 ReactDOM.render(
-    <div><PollContainer /> <PollContainer/></div>
+    <div><PollContainer /></div>
     ,
     document.getElementById('app')
 );
