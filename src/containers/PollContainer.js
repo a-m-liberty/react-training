@@ -4,7 +4,7 @@ import PollQuestion from '../components/PollQuestion.js';
 import PollSubmitButton from '../components/PollSubmitButton.js';
 import RadioButtonGroup from '../components/RadioButtonGroup.js';
 import CurrentChoice from '../components/CurrentChoice.js';
-import * as data from '../data/data.json';
+import axios from 'axios';
 
 const rowStyle ={
     backgroundColor: '#dadada',
@@ -17,9 +17,10 @@ class PollContainer extends React.Component {
     constructor() {
         super();
         this.state = {
-            header: data.poll.header,
-            question: data.poll.questions[0].question,
+            header: '',
+            question: '',
             checkedValue: '',
+            choices: [],
             correctAnswer: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women'
         };
         this.setCheckedValue = this.setCheckedValue.bind(this);
@@ -31,6 +32,16 @@ class PollContainer extends React.Component {
 
     componentDidMount(){
         console.log('componentDidMount()');
+        axios.get('http://localhost:8080/data/data.json').then((res) => {
+            this.setState({
+                header:res.data.poll.header,
+                question: res.data.poll.questions[0].question,
+                choices: res.data.poll.questions[0].choices
+            });
+        });
+
+        console.log('asdf');
+
     }
 
     UNSAFE_componentWillReceiveProps() {
@@ -39,6 +50,7 @@ class PollContainer extends React.Component {
 
     shouldComponentUpdate() {
         console.log('shouldcomponentUpdate()');
+        return true;
     }
 
     UNSAFE_componentWillUpdate() {
@@ -57,11 +69,9 @@ class PollContainer extends React.Component {
         this.setState({
             checkedValue: value
         });
-        console.log(`current choice: ${value}`);
     }
 
     render() {
-        const choices = data.poll.questions[0].choices;
 
         return (
             <div className="container">
@@ -75,7 +85,7 @@ class PollContainer extends React.Component {
                             <RadioButtonGroup
                                 name='answer'
                                 checkedValue={this.state.checkedValue}
-                                choices={choices}
+                                choices={this.state.choices}
                                 onChange={this.setCheckedValue}
                             />
                             <CurrentChoice choice={this.state.checkedValue}/>
