@@ -5,16 +5,27 @@ import PollAnswer from '../components/PollAnswer.js';
 import PollSubmitButton from '../components/PollSubmitButton.js';
 
 class PollContainer extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            header: 'Conan!',
+            question: 'What is best in life?',
+            answer1: 'Pizza',
+            answer2: 'Tacos',
+            answer3: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women',
+            correctAnswer: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women'
+        };
+    }
     render() {
         return (
             <div className="container">
-                <div className="col-sm-4 col-sm-offset-4">
-                    <PollHeader />
+                <div className="col-sm-8 col-sm-offset-2">
+                    <PollHeader text={this.state.header} />
                     <form>
-                        <PollQuestion />
-                        <PollAnswer answer="Answer 1" />
-                        <PollAnswer answer="Answer 2" />
-                        <PollAnswer answer="Answer 3" />
+                        <PollQuestion text={this.state.question} />
+                        <PollAnswer text={this.state.answer1} />
+                        <PollAnswer text={this.state.answer2} />
+                        <PollAnswer text={this.state.answer3} />
                         <PollSubmitButton />
                     </form>
                 </div>
