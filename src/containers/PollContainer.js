@@ -4,6 +4,13 @@ import PollQuestion from '../components/PollQuestion.js';
 import PollAnswer from '../components/PollAnswer.js';
 import PollSubmitButton from '../components/PollSubmitButton.js';
 
+const rowStyle ={
+    backgroundColor: '#dadada',
+    border: '1px solid black',
+    borderRadius: '6px',
+    padding: '10px'
+};
+
 class PollContainer extends React.Component {
     constructor() {
         super();
@@ -19,15 +26,19 @@ class PollContainer extends React.Component {
     render() {
         return (
             <div className="container">
-                <div className="col-sm-8 col-sm-offset-2">
+                <div className="jumbotron">
                     <PollHeader text={this.state.header} />
-                    <form>
-                        <PollQuestion text={this.state.question} />
-                        <PollAnswer text={this.state.answer1} />
-                        <PollAnswer text={this.state.answer2} />
-                        <PollAnswer text={this.state.answer3} />
-                        <PollSubmitButton />
-                    </form>
+                </div>
+                <div className="row" style={rowStyle}>
+                    <div className="col-sm-8 col-sm-offset-2">
+                        <form>
+                            <PollQuestion text={this.state.question} />
+                            <PollAnswer text={this.state.answer1} />
+                            <PollAnswer text={this.state.answer2} />
+                            <PollAnswer text={this.state.answer3} />
+                            <PollSubmitButton />
+                        </form>
+                    </div>
                 </div>
             </div>
         );
