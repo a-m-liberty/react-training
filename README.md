@@ -15,3 +15,5 @@ To build:
 ## Credits
 
 ## License
+
+Docs at https://github.com/watzthisco/tdd-react-labs-v3.x
