@@ -1,7 +1,8 @@
 {
   "poll": {
     "header": "Conan!",
-    "questions": [{
+    "questions": [
+      {
         "question": "What is best in life?",
         "choices": [
           {"value": "Tacos", "label": "Tacos"},
@@ -12,6 +13,14 @@
           }
         ]
 
-    }]
+      },
+      {
+        "question": "Second question",
+        "choices": [
+          {"value": "Tacos", "label": "Tacos"},
+          {"value": "Pizza", "label": "Pizza"}
+        ]
+      }
+    ]
   }
 }
