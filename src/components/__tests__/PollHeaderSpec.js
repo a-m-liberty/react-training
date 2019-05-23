@@ -2,10 +2,10 @@ import PollHeader from '../PollHeader.js';
 import React from 'react';
 import {shallow} from 'enzyme';
 
-describe('Poll Header', function() {
+describe('Question Header', function() {
     let wrapper;
     beforeEach(() => {
-        wrapper = shallow(<PollHeader text="Conan!" />);
+        wrapper = shallow(<PollHeader text="Welcome!" />);
     });
 
     it('renders without problems', function(){
@@ -14,7 +14,7 @@ describe('Poll Header', function() {
 
     it('prints a message', () => {
         const actual = wrapper.find('h1').text();
-        const expected = 'Conan!';
+        const expected = 'Welcome!';
         expect(actual).toEqual(expected);
     });
 });

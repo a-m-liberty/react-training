@@ -1,5 +1,6 @@
 import React from 'react';
 import PollHeader from '../components/PollHeader.js';
+import Question from '../components/Question.js';
 import PollQuestion from '../components/PollQuestion.js';
 import PollSubmitButton from '../components/PollSubmitButton.js';
 import RadioButtonGroup from '../components/RadioButtonGroup.js';
@@ -7,23 +8,14 @@ import CurrentChoice from '../components/CurrentChoice.js';
 import CorrectChoice from '../components/CorrectChoice.js';
 import axios from 'axios';
 
-const rowStyle ={
-    backgroundColor: '#dadada',
-    border: '1px solid black',
-    borderRadius: '6px',
-    padding: '10px'
-};
+
 
 class PollContainer extends React.Component {
     constructor() {
         super();
         this.state = {
             header: '',
-            question: '',
-            checkedValue: '',
-            choices: [],
-            correctAnswer: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women',
-            correctAnswerChosen: false
+            questions: []
         };
         this.setCheckedValue = this.setCheckedValue.bind(this);
         this.submitGuess = this.submitGuess.bind(this);
@@ -36,11 +28,21 @@ class PollContainer extends React.Component {
     componentDidMount(){
         console.log('componentDidMount()');
         axios.get('http://localhost:8080/data/data.json').then((res) => {
+            const questions = [];
+
+            res.data.poll.questions.forEach((element) =>{
+                questions.push({
+                    question: element.question,
+                    choices: element.choices,
+                    checkedValue: ''
+                })
+            });
+
             this.setState({
                 header:res.data.poll.header,
-                question: res.data.poll.questions[0].question,
-                choices: res.data.poll.questions[0].choices
+                questions
             });
+            console.log('hey')
         });
     }
 
@@ -77,28 +79,24 @@ class PollContainer extends React.Component {
     }
 
     render() {
-
+        const questions = this.state.questions.map((question, index) => {
+            return (
+                <Question
+                    group={`answer${index}`}
+                    question={question.question}
+                    choices={question.choices}
+                    setCheckedValue={this.setCheckedValue}
+                />
+            )
+        });
+        console.log(questions);
         return (
             <div className="container">
                 <div className="jumbotron">
                     <PollHeader text={this.state.header} />
                 </div>
-                <div className="row" style={rowStyle}>
-                    <div className="col-sm-8 col-sm-offset-2">
-                        <form>
-                            <PollQuestion text={this.state.question} />
-                            <RadioButtonGroup
-                                name='answer'
-                                checkedValue={this.state.checkedValue}
-                                choices={this.state.choices}
-                                onChange={this.setCheckedValue}
-                            />
-                            <CurrentChoice choice={this.state.checkedValue}/>
-                            <PollSubmitButton handleClick={this.submitGuess}/>
-                            <CorrectChoice correct={this.state.correctAnswerChosen}/>
-                        </form>
-                    </div>
-                </div>
+                {questions}
+                <PollSubmitButton handleClick={this.state.submitGuess}/>
             </div>
         );
     }

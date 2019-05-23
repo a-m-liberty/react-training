@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow, mount, render} from 'enzyme';
 
 
-describe('Poll Submit Button', function() {
+describe('Question Submit Button', function() {
    const PollSubmitButton = require('../PollSubmitButton').default;
 
    it('renders without a problem', function() {

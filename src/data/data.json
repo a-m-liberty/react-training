@@ -1,16 +1,13 @@
 {
   "poll": {
-    "header": "Conan!",
+    "header": "Welcome!",
     "questions": [
       {
-        "question": "What is best in life?",
+        "question": "What food is best?",
         "choices": [
           {"value": "Tacos", "label": "Tacos"},
           {"value": "Pizza", "label": "Pizza"},
-          {
-            "value": "To crush your enemies, see them driven before you, and to hear the lamentations of their women",
-            "label": "To crush your enemies, see them driven before you, and to hear the lamentations of their women"
-          }
+          {"value": "Burgers", "label": "Burgers"}
         ]
 
       },
