@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const CurrentChoice = (props) => {
@@ -6,5 +7,7 @@ const CurrentChoice = (props) => {
     return <div>{props.choice? currentChoice : '' }</div>;
 };
 
-
+CurrentChoice.propTypes = {
+    choice: PropTypes.string
+};
 export default CurrentChoice;

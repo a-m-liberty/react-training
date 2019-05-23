@@ -39,9 +39,6 @@ class PollContainer extends React.Component {
                 choices: res.data.poll.questions[0].choices
             });
         });
-
-        console.log('asdf');
-
     }
 
     UNSAFE_componentWillReceiveProps() {
