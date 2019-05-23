@@ -4,6 +4,7 @@ import PollQuestion from '../components/PollQuestion.js';
 import PollSubmitButton from '../components/PollSubmitButton.js';
 import RadioButtonGroup from '../components/RadioButtonGroup.js';
 import CurrentChoice from '../components/CurrentChoice.js';
+import CorrectChoice from '../components/CorrectChoice.js';
 import axios from 'axios';
 
 const rowStyle ={
@@ -21,9 +22,11 @@ class PollContainer extends React.Component {
             question: '',
             checkedValue: '',
             choices: [],
-            correctAnswer: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women'
+            correctAnswer: 'To crush your enemies, see them driven before you, and to hear the lamentations of their women',
+            correctAnswerChosen: false
         };
         this.setCheckedValue = this.setCheckedValue.bind(this);
+        this.submitGuess = this.submitGuess.bind(this);
     }
 
     UNSAFE_componentWillMount(){
@@ -64,8 +67,13 @@ class PollContainer extends React.Component {
 
     setCheckedValue(value){
         this.setState({
-            checkedValue: value
+            checkedValue: value,
         });
+    }
+
+    submitGuess() {
+        const correctAnswerChosen = this.state.checkedValue === this.state.correctAnswer;
+        this.setState({correctAnswerChosen});
     }
 
     render() {
@@ -86,7 +94,8 @@ class PollContainer extends React.Component {
                                 onChange={this.setCheckedValue}
                             />
                             <CurrentChoice choice={this.state.checkedValue}/>
-                            <PollSubmitButton />
+                            <PollSubmitButton handleClick={this.submitGuess}/>
+                            <CorrectChoice correct={this.state.correctAnswerChosen}/>
                         </form>
                     </div>
                 </div>
